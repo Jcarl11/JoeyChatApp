@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Welcome</string>
+    <string name="tab_text_1">Users</string>
+    <string name="tab_text_2">Chats</string>
+    <string name="tab_text_3">Friends</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="label_logout">Logout</string>
+</resources>
