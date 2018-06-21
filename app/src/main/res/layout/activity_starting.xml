@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.windows.joeychatapp.StartingActivity"
-    android:background="@color/colorPrimary">
+    tools:context="com.example.windows.joeychatapp.StartingActivity">
 
 
     <ImageView
@@ -26,19 +25,19 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LOGIN"
+            android:text="@string/label_login"
             android:backgroundTint="@color/buttonPositive"
             android:textColor="@android:color/white" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OR"
+            android:text="@string/label_or"
             android:layout_gravity="center"
             android:textColor="@android:color/black"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CREATE AN ACCOUNT"
+            android:text="@string/label_createanccount"
             android:backgroundTint="@color/buttonNegative"
             android:textColor="@android:color/white"/>
 

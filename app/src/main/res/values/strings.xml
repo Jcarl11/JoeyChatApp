@@ -1,8 +1,14 @@
 <resources>
-    <string name="app_name">Welcome</string>
-    <string name="tab_text_1">Users</string>
+    <string name="app_name">ChatApp</string>
+    <string name="tab_text_1">Requests</string>
     <string name="tab_text_2">Chats</string>
     <string name="tab_text_3">Friends</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="label_logout">Logout</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_login">LOGIN</string>
+    <string name="label_or">OR</string>
+    <string name="label_createanccount">CREATE AN ACCOUNT</string>
 </resources>
