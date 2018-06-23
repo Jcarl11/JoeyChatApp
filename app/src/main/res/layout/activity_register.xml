@@ -18,9 +18,10 @@
             android:layout_gravity="center"
             android:layout_marginBottom="100dp"
             android:layout_marginTop="50dp"
+            android:fontFamily="@font/montserrat"
             android:text="REGISTER NOW"
-            android:textSize="15pt"
-            android:fontFamily="@font/roboto" />
+            android:textColor="@android:color/black"
+            android:textSize="15pt" />
 
         <TextView
             android:id="@+id/TV_MESSAGE"
@@ -59,9 +60,6 @@
 
         </android.support.design.widget.TextInputLayout>
 
-
-
-
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -89,9 +87,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/buttonNegative"
+                android:fontFamily="@font/montserrat"
                 android:text="CLEAR"
-                android:fontFamily="@font/roboto"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white" />
 
             <Button
                 android:id="@+id/BTN_SUBMIT"
@@ -99,9 +97,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/buttonPositive"
+                android:fontFamily="@font/montserrat"
                 android:text="SUBMIT"
-                android:fontFamily="@font/roboto"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
     </LinearLayout>
