@@ -89,7 +89,8 @@
                 android:backgroundTint="@color/buttonNegative"
                 android:fontFamily="@font/montserrat"
                 android:text="CLEAR"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textSize="12dp"/>
 
             <Button
                 android:id="@+id/BTN_SUBMIT"
@@ -99,7 +100,8 @@
                 android:backgroundTint="@color/buttonPositive"
                 android:fontFamily="@font/montserrat"
                 android:text="SUBMIT"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textSize="12dp"/>
 
         </LinearLayout>
     </LinearLayout>

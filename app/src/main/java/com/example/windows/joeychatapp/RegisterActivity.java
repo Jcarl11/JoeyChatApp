@@ -19,6 +19,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,12 +44,16 @@ public class RegisterActivity extends AppCompatActivity
     @BindView(R.id.TV_MESSAGE)
     TextView TV_MESSAGE;
     FirebaseAuth auth;
-
+    ProgressDialog PROGRESS_DIALOG;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        PROGRESS_DIALOG = new ProgressDialog(this);
+        PROGRESS_DIALOG.setMessage("loading...");
+        PROGRESS_DIALOG.setTitle("Registering account");
+        PROGRESS_DIALOG.setCancelable(false);
         ButterKnife.bind(this);
         auth = FirebaseAuth.getInstance();
     }
@@ -66,38 +74,43 @@ public class RegisterActivity extends AppCompatActivity
     {
         if(hasNullFields().equals(false))
         {
-            final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("loading...");
-            progressDialog.setTitle("Registering account");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
+            PROGRESS_DIALOG.show();
             String email = ET_EMAIL.getText().toString().trim();
             String password = ET_PASSWORD.getText().toString().trim();
             hideKeyboard(this);
             auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
+                    {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task)
                         {
                             if(task.isSuccessful())
                             {
-                                FirebaseUser user = auth.getCurrentUser();
-                                TV_MESSAGE.setText("Successful");
-                                progressDialog.dismiss();
+                                String userUID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("User").child(userUID);
+                                HashMap<String, String> userData = new HashMap<>();
+                                userData.put("USER_DISPLAYNAME", ET_DISPLAYNAME.getText().toString().trim());
+                                dbReference.setValue(userData);
+                                PROGRESS_DIALOG.dismiss();
+                                Intent sendToNextPage = new Intent(RegisterActivity.this, MainActivity.class);
+                                startActivity(sendToNextPage);
+                                finish();
                             }
                             else
                                 TV_MESSAGE.setText("Register not successful");
+                            TV_MESSAGE.setVisibility(View.VISIBLE);
                         }
                     })
-            .addOnFailureListener(this, new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-
-                    TV_MESSAGE.setText(e.getMessage());
-                    progressDialog.dismiss();
-                }
-            });
-
+                    .addOnFailureListener(this, new OnFailureListener()
+                    {
+                        @Override
+                        public void onFailure(@NonNull Exception e)
+                        {
+                            TV_MESSAGE.setText(e.getMessage());
+                            PROGRESS_DIALOG.dismiss();
+                            TV_MESSAGE.setVisibility(View.VISIBLE);
+                        }
+                    });
         }
         else
         {

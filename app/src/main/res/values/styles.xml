@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/montserratFontTextView</item>
+        <item name="android:buttonStyle">@style/montserratFontButton</item>
+        <item name="android:editTextStyle">@style/montserratEditText</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -17,4 +20,18 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="montserratFontTextView" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+
+    <style name="montserratFontButton" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">@font/montserrat</item>
+    </style>
+    <style name="montserratEditText" parent="android:Widget.EditText">
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="montserratTextInputEditText" parent="Widget.Design.TextInputLayout">
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
 </resources>

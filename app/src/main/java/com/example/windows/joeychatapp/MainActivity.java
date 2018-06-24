@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -88,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
+            FirebaseAuth.getInstance().signOut();
+            Intent sendtoNextPage = new Intent(MainActivity.this, StartingActivity.class);
+            startActivity(sendtoNextPage);
+            finish();
             return true;
         }
 
