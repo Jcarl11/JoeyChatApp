@@ -96,9 +96,12 @@ public class RegisterActivity extends AppCompatActivity
                                 startActivity(sendToNextPage);
                                 finish();
                             }
-                            else
+                            else {
                                 TV_MESSAGE.setText("Register not successful");
-                            TV_MESSAGE.setVisibility(View.VISIBLE);
+                                PROGRESS_DIALOG.dismiss();
+                                TV_MESSAGE.setVisibility(View.VISIBLE);
+                            }
+
                         }
                     })
                     .addOnFailureListener(this, new OnFailureListener()
