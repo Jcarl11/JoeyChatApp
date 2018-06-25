@@ -26,6 +26,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:11.0.4'
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.google.firebase:firebase-database:11.0.4'
+    implementation 'com.google.firebase:firebase-storage:11.0.4'
     testImplementation 'junit:junit:4.12'
     compile 'com.android.support:support-annotations:27.1.1'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -37,6 +38,9 @@ dependencies {
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+    //Compressor
+    compile 'id.zelory:compressor:2.1.0'
 }
+
 
 apply plugin: 'com.google.gms.google-services'
