@@ -3,6 +3,8 @@ package com.example.windows.joeychatapp;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,7 +24,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.io.File;
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -33,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity
 
     @BindView(R.id.BTN_SUBMIT)
     Button BTN_SUBMIT;
-    @BindView(R.id.BTN_CLEAR)
+    @BindView(R.id.BTN_CHOOSEIMAGE)
     Button BTN_CLEAR;
     @BindView(R.id.ET_DISPLAYNAME)
     TextInputEditText ET_DISPLAYNAME;
@@ -43,8 +50,11 @@ public class RegisterActivity extends AppCompatActivity
     TextInputEditText ET_PASSWORD;
     @BindView(R.id.TV_MESSAGE)
     TextView TV_MESSAGE;
+    @BindView(R.id.IMV_REGISTER)
+    ImageView IMV_REGISTER;
     FirebaseAuth auth;
     ProgressDialog PROGRESS_DIALOG;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -96,7 +106,8 @@ public class RegisterActivity extends AppCompatActivity
                                 startActivity(sendToNextPage);
                                 finish();
                             }
-                            else {
+                            else
+                            {
                                 TV_MESSAGE.setText("Register not successful");
                                 PROGRESS_DIALOG.dismiss();
                                 TV_MESSAGE.setVisibility(View.VISIBLE);
@@ -122,13 +133,27 @@ public class RegisterActivity extends AppCompatActivity
         }
     }
 
-    @OnClick(R.id.BTN_CLEAR)
-    public void clearFields(View view)
+    @OnClick(R.id.BTN_CHOOSEIMAGE)
+    public void chooseImage(View view)
     {
-        ET_DISPLAYNAME.getText().clear();
-        ET_EMAIL.getText().clear();
-        ET_PASSWORD.getText().clear();
-        TV_MESSAGE.setText("");
+        CropImage.activity()
+                .setGuidelines(CropImageView.Guidelines.OFF)
+                .setAspectRatio(1,1)
+                .setActivityTitle("Choose an image")
+                .start(RegisterActivity.this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK)
+        {
+            IMV_REGISTER.setImageDrawable(null);
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            Uri resultUri = result.getUri();
+            Picasso.get().load(resultUri).placeholder(R.drawable.defaultimage).into(IMV_REGISTER);
+        }
     }
 
     private Boolean hasNullFields()

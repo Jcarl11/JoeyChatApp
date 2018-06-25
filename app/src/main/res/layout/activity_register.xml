@@ -16,12 +16,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="100dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/montserrat"
             android:text="REGISTER NOW"
             android:textColor="@android:color/black"
             android:textSize="15pt" />
+
+        <ImageView
+            android:id="@+id/IMV_REGISTER"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/defaultimage" />
 
         <TextView
             android:id="@+id/TV_MESSAGE"
@@ -82,13 +90,13 @@
             android:weightSum="2">
 
             <Button
-                android:id="@+id/BTN_CLEAR"
+                android:id="@+id/BTN_CHOOSEIMAGE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/buttonNegative"
                 android:fontFamily="@font/montserrat"
-                android:text="CLEAR"
+                android:text="CHOOSE IMAGE"
                 android:textColor="@android:color/white"
                 android:textSize="12dp"/>
 
